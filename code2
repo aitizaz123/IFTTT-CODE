@@ -1,0 +1,72 @@
+%% MATLAB Code: Comparative Performance Analysis of IFTTT Architectures
+
+% Data: Example values (adjust with your actual measurements)
+rounds = 1:7; % Number of test scenarios or time intervals
+
+% Transmission energy consumption in mJ (millijoules)
+arch1_energy = [12 14 15 13 16 18 17];  % Architecture 1
+arch2_energy = [10 11 12 12 13 14 15];  % Architecture 2
+arch3_energy = [9 10 11 10 12 13 12];   % Architecture 3
+
+% Latency in ms
+arch1_latency = [200 210 215 205 220 225 230];
+arch2_latency = [180 185 190 185 195 200 205];
+arch3_latency = [150 155 160 155 165 170 168];
+
+%% Plot Transmission Energy Consumption
+figure('Name','Transmission Energy Comparison','Color','w');
+hold on; grid on; box on;
+
+plot(rounds, arch1_energy, '-o', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 0 1]);
+plot(rounds, arch2_energy, '--s', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [1 0 0]);
+plot(rounds, arch3_energy, '-.^', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 1 0]);
+
+xlabel('Scenario/Round', 'FontWeight', 'bold', 'FontSize', 12);
+ylabel('Transmission Energy (mJ)', 'FontWeight', 'bold', 'FontSize', 12);
+title('Comparative Transmission Energy Consumption', 'FontWeight', 'bold', 'FontSize', 14);
+
+legend({'Architecture 1','Architecture 2','Architecture 3'}, 'Location','northwest', 'FontSize', 10);
+xlim([1 7]);
+ylim([0 25]);
+
+hold off;
+
+%% Plot Latency Comparison
+figure('Name','Latency Comparison','Color','w');
+hold on; grid on; box on;
+
+plot(rounds, arch1_latency, '-o', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 0 1]);
+plot(rounds, arch2_latency, '--s', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [1 0 0]);
+plot(rounds, arch3_latency, '-.^', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 1 0]);
+
+xlabel('Scenario/Round', 'FontWeight', 'bold', 'FontSize', 12);
+ylabel('Latency (ms)', 'FontWeight', 'bold', 'FontSize', 12);
+title('Comparative Latency Performance', 'FontWeight', 'bold', 'FontSize', 14);
+
+legend({'Architecture 1','Architecture 2','Architecture 3'}, 'Location','northwest', 'FontSize', 10);
+xlim([1 7]);
+ylim([100 250]);
+
+hold off;
+
+%% Optional: Plot Both Metrics Together using Dual Y-Axis
+figure('Name','Energy and Latency Comparison','Color','w');
+yyaxis left
+plot(rounds, arch1_energy, '-o', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 0 1]); hold on;
+plot(rounds, arch2_energy, '--s', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [1 0 0]);
+plot(rounds, arch3_energy, '-.^', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 1 0]);
+ylabel('Transmission Energy (mJ)', 'FontWeight', 'bold');
+
+yyaxis right
+plot(rounds, arch1_latency, '-o', 'LineWidth', 1.5, 'MarkerSize', 6, 'Color', [0 0 0]);
+plot(rounds, arch2_latency, '--s', 'LineWidth', 1.5, 'MarkerSize', 6, 'Color', [0.5 0.5 0.5]);
+plot(rounds, arch3_latency, '-.^', 'LineWidth', 1.5, 'MarkerSize', 6, 'Color', [0.3 0.3 0.3]);
+ylabel('Latency (ms)', 'FontWeight', 'bold');
+
+xlabel('Scenario/Round', 'FontWeight', 'bold');
+title('Comparative Energy Efficiency and Latency', 'FontWeight', 'bold', 'FontSize', 14);
+
+legend({'Arch1 Energy','Arch2 Energy','Arch3 Energy', ...
+        'Arch1 Latency','Arch2 Latency','Arch3 Latency'}, 'Location','northwest');
+
+grid on; box on;
