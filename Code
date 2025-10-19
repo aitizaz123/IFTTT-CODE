@@ -1,0 +1,35 @@
+% MATLAB Code to Plot Transmission Power Comparison
+
+% Data
+rounds = 1:7;
+proposed_model = [-55 -60 -65 -70 -75 -80 -85]; % in dBm
+standard_protocol = [-55 -61 -66 -70 -77 -83 -88]; % in dBm
+advanced_protocol = [-55 -57 -62 -67 -72 -77 -81]; % in dBm
+
+% Plot
+figure;
+hold on;
+grid on;
+
+% Proposed Model
+plot(rounds, proposed_model, '-o', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 0 1]);
+
+% Standard Energy-Efficient Protocol
+plot(rounds, standard_protocol, '--s', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [1 0 0]);
+
+% Advanced Secure Protocol
+plot(rounds, advanced_protocol, '-.^', 'LineWidth', 2, 'MarkerSize', 8, 'Color', [0 1 0]);
+
+% Labels and Title
+xlabel('Rounds', 'FontWeight', 'bold', 'FontSize', 12);
+ylabel('Transmitter Power (dBm)', 'FontWeight', 'bold', 'FontSize', 12);
+title('(a) Transmission Power Comparison', 'FontWeight', 'bold', 'FontSize', 14);
+
+% Legend
+legend('Proposed Model', 'Standard Energy-Efficient Protocol', 'Advanced Secure Protocol', 'Location', 'southwest');
+
+% Axis Limits
+xlim([1 7]);
+ylim([-90 -50]);
+
+hold off;
